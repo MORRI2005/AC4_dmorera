@@ -28,6 +28,11 @@ function setup() {
 }
 
 function startMic() {
+  let context = getAudioContext();
+  if (context.state !== "running") {
+    context.resume();
+  }
+
   mic.start(() => {
     fft.setInput(mic);
     amp.setInput(mic);
